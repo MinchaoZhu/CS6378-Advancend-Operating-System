@@ -11,10 +11,10 @@ using namespace std;
 Config config;
 vector<HostConfig> hostsConfig;
 
-void readConfig() {
+void readConfig(char* path) {
     string line;
     
-    string conf_path = "./config/main.txt";
+    string conf_path = string(path);
     ifstream ifs(conf_path);
 
     std::getline(ifs, line);

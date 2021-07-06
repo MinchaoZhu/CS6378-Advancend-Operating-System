@@ -25,7 +25,7 @@ struct HostConfig {
 // global config
 extern Config config; // six config numbers
 extern vector<HostConfig> hostsConfig; // config for each host
-void readConfig();
+void readConfig(char*);
 void printConfig();
 
 

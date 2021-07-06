@@ -31,6 +31,7 @@ void VectorClock::increClock() {
 }
 
 string VectorClock::toString() {
+    cmt.lock();
     string ret = "{";
     for(int i = 0; i < clock.size(); ++i) {
         ret += to_string(clock[i]);
@@ -38,6 +39,7 @@ string VectorClock::toString() {
     }
     ret = ret.substr(0, ret.length() - 1);
     ret += "}";
+    cmt.unlock();
     return ret;
 }
 

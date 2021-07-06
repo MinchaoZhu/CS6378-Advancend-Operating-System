@@ -13,4 +13,5 @@ add_executable(Main
     src/core/client_manager.cpp
     src/core/map.cpp
     src/core/vector_clock.cpp
+    src/core/cl_snapshot.cpp
 )

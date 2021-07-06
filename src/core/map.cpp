@@ -2,6 +2,7 @@
 #include "mynet/server.h"
 #include "util/config_parser.h"
 #include "mynet/vector_clock.h"
+#include "mynet/cl_snapshot.h"
 
 #include <thread>
 #include <iostream>
@@ -61,7 +62,26 @@ void Map::execute() {
                         while(i < dataRead) {
                             if(buffer[i] == '{') {
                                 if(buffer[i+1] == 'c') {
-                                    cout << "ctl: " << buffer[i] << endl;
+                                    int start = i+2;
+                                    while(i < dataRead && buffer[i] != '}') {
+                                        ++i;  
+                                    }
+                                    std::string data = "";
+                                    while(start < i) {
+                                        data = data + buffer[start];
+                                        ++start;
+                                    }
+
+                                    int thisX = stoi(data);
+
+                                    cout << "ctl: " << "marker " << thisX <<" reveived" << endl;
+                                    if(thisX != clSnapshot->prevX) {
+                                        clSnapshot->prevX = thisX;
+                                        clSnapshot->takeSnapshot();
+                                        clSnapshot->sendMarker(thisX);
+                                    }
+
+
                                     i++;
                                 }
                                 else {
@@ -119,7 +139,6 @@ void Map::sendAppMsg() {
             }
         }
     }
-
 }
 
 
