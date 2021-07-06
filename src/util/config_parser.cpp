@@ -24,7 +24,7 @@ void readConfig() {
         stoul(confNums[0]), stoul(confNums[1]), stoul(confNums[2]), stoul(confNums[3]), stoul(confNums[4]), stoul(confNums[5])
     };
 
-    for (int i = 0; std::getline(ifs, line); ) 
+    for (unsigned long i = 0; std::getline(ifs, line); ) 
     {
         if(line.length() == 0 || (line.length() > 0 && line[0] == '#')) {
             continue;
@@ -33,7 +33,7 @@ void readConfig() {
         if(hostsConfig.size() < config.nodesNumber) {
             auto tmp = split(line, " ");
             HostConfig newHostConfig = {
-                stoi(tmp[0]), tmp[1], tmp[2]
+                stoul(tmp[0]), tmp[1], stoi(tmp[2])
             };
             hostsConfig.push_back(newHostConfig);
         }
@@ -54,4 +54,14 @@ void readConfig() {
     
     ifs.close();
 
+}
+
+
+void printConfig() {
+    std::cout << "nodeNumbers: " << config.nodesNumber << std::endl;
+    std::cout << "minPerActive: " << config.minPerActive << std::endl;
+    std::cout << "maxPerActive: " << config.maxPerActive << std::endl;
+    std::cout << "minSendDelay: " << config.minSendDelay << std::endl;
+    std::cout << "snapshotDelay: " << config.snapshotDelay << std::endl;
+    std::cout << "maxNumber: " << config.maxNumber << std::endl;
 }
