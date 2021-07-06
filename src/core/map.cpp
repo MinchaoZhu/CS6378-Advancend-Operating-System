@@ -124,7 +124,7 @@ void Map::execute() {
 
 void Map::sendAppMsg() {
     while(1) {
-        if(server->UpdateConnectionsNum(0) >= server->clientSocket.size() && server->status == SERVERACTIVE) {
+        if(server->UpdateConnectionsNum(0) == server->clientSocket.size() && server->status == SERVERACTIVE) {
             while(updateRemainingMsg(0) > 0 && server->messageSent < config.maxNumber) {
                 int i = rand() % server->clientSocket.size();
                 const char* msg = vClock->toString().c_str();
