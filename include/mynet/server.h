@@ -16,6 +16,7 @@ public:
     vector<int> clientSocket; // client sockets
     ClientManager cmanager;
     fd_set readFds;
+    int max_sd;
 
     Server();
     Server(int);

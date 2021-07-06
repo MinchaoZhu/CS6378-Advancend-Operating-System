@@ -59,13 +59,18 @@ void Client::execute(Client* object, int* counter) {
     }
 
     if(sock > -1) {
+        server->max_sd = max(sock, server->max_sd);
         for(int i = 0; i < server->clientSocket.size(); ++i) {
             if( server->clientSocket[i] == 0 )
             {
                 server->clientSocket[i] = sock;
                 FD_SET(sock, &server->readFds);
                 std::cout << "Client, new connection added as fd index: " << i << std::endl; 
-                send(sock, server->newConnectionMessage, strlen(server->newConnectionMessage), 0);
+                std::cout << "New connection established to node " << to_string(cfg.id) << std::endl;
+                std::string msg = "New connection established from node " + to_string(server->cfg.id); 
+
+                const char* conMessage = msg.c_str();
+                send(sock, conMessage, strlen(conMessage), 0);
                 break;
             }
         }
