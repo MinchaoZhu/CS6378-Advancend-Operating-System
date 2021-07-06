@@ -21,21 +21,10 @@ ClientManager::ClientManager(int id) {
     for(int i = 0; i < n; ++i) {
         clients[i].start();
     }
-}
-
-
-void ClientManager::newActiveInterval() {
-    // TODO 发送消息
-
-
-}
-
-
-void decreaseCounter(int index) {
     
 
-
 }
+
 
 
 

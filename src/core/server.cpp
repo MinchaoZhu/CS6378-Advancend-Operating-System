@@ -10,20 +10,22 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <iostream>
+#include <mutex>
+#include <thread>
 
 
 
 Server::Server(){}
 
-// node id
-Server::Server(int thisNode) {
+// node id, init state
+Server::Server(int thisNode, int initState) {
     cfg = hostsConfig[thisNode];
     clientSocket = vector<int>(cfg.neighbors.size(), 0);
     std::string msg = "New connection established from node " + to_string(cfg.id); 
-
+    connectionsNum = 0;
     newConnectionMessage = msg.c_str();
     messageSent = 0;
-
+    status = initState;
     std::cout << "id: " << cfg.id << std::endl;
     std::cout << "hostName: " << cfg.hostName << std::endl;
     std::cout << "port: " << cfg.port << std::endl;
@@ -37,9 +39,12 @@ Server::Server(int thisNode) {
     
 }
 
+void Server::run() {
+    serverThread = std::thread(&Server::execute, server);
+}
+
 // init state: SERVERACTIVE / SERVERPASSIVE
-void Server::Run(uint8_t initState) {
-    status = initState;
+void Server::execute() {
     struct sockaddr_in address;
     bzero(&address, sizeof(address));
     address.sin_family = AF_INET;
@@ -64,7 +69,7 @@ void Server::Run(uint8_t initState) {
     int newSocket;
     struct sockaddr_in clientAddress;
     socklen_t clientAddressLen = sizeof(clientAddress);
-    while(1) {
+    while(UpdateConnectionsNum(0) < clientSocket.size()) {
         memset(buffer, '\0', sizeof(buffer));
         FD_SET(listenfd, &readFds);
         for(int i = 0; i < clientSocket.size(); ++i) {
@@ -73,6 +78,9 @@ void Server::Run(uint8_t initState) {
             }
         }
         select(max_sd + 1, &readFds, NULL, NULL, NULL);
+        if(UpdateConnectionsNum(0) == clientSocket.size()) {
+            break;
+        }
         // accept new connection
         if(FD_ISSET(listenfd, &readFds)) {
             newSocket = accept(listenfd, (struct sockaddr *)&clientAddress, &clientAddressLen);
@@ -88,7 +96,7 @@ void Server::Run(uint8_t initState) {
                 if( clientSocket[i] == 0 )
                 {
                     clientSocket[i] = newSocket;
-                    std::cout << "Server, new connection added as fd index: " << i << std::endl; 
+                    UpdateConnectionsNum(1);
                     break;
                 }
             }   
@@ -105,16 +113,32 @@ void Server::Run(uint8_t initState) {
                     clientSocket[i] = 0;
                 }
                 else {
-                    // some message
-                    if(messageSent < config.maxNumber && status != SERVERACTIVE) {
-                        status = SERVERACTIVE;
-                        cmanager.newActiveInterval(); // to be active
-                    }
                     buffer[dataRead] = '\0';
-                    std::cout << "data: " << buffer << std::endl;
+                    std::cout << "msg: " << buffer << std::endl;
                 }
             }
         }
+
     }
 
+    std::cout << "Connections Established: " << UpdateConnectionsNum(0) << " neighbors." << std::endl;
+
+
 }
+
+std::mutex cn_lock; //ConnectionsNum lock
+
+
+int Server::UpdateConnectionsNum(int n) {
+    cn_lock.lock();
+    this->connectionsNum += n;
+    int ret = this->connectionsNum;
+    cn_lock.unlock();
+    return ret;
+}
+
+
+
+
+
+

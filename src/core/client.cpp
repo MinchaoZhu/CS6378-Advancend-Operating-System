@@ -23,9 +23,6 @@ void Client::start() {
     clientThread = std::thread(&Client::execute, this, this, counter);
 }
 
-void Client::join() {
-    clientThread.join();
-}
 
 void Client::execute(Client* object, int* counter) {
     std::cout << object->neighbor <<": client starts" << std::endl; 
@@ -64,13 +61,11 @@ void Client::execute(Client* object, int* counter) {
             if( server->clientSocket[i] == 0 )
             {
                 server->clientSocket[i] = sock;
+                server->UpdateConnectionsNum(1);
+
                 FD_SET(sock, &server->readFds);
                 std::cout << "Client, new connection added as fd index: " << i << std::endl; 
                 std::cout << "New connection established to node " << to_string(cfg.id) << std::endl;
-                std::string msg = "New connection established from node " + to_string(server->cfg.id); 
-
-                const char* conMessage = msg.c_str();
-                send(sock, conMessage, strlen(conMessage), 0);
                 break;
             }
         }

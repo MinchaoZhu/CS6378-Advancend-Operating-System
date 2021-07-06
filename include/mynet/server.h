@@ -5,10 +5,10 @@
 #include "mynet/client_manager.h"
 
 #include <vector>
+#include <thread>
 
-
-const uint8_t SERVERACTIVE = 0;
-const uint8_t SERVERPASSIVE = 1;
+const int SERVERACTIVE = 0;
+const int SERVERPASSIVE = 1;
 
 class Server{
 public:
@@ -17,18 +17,20 @@ public:
     ClientManager cmanager;
     fd_set readFds;
     int max_sd;
-
+    int connectionsNum;
     Server();
-    Server(int);
+    Server(int, int);
+    std::thread serverThread;
 
-    void Run(uint8_t);
+    int status;
+
+    void run();
+    void execute();
     const char* newConnectionMessage;
+    int UpdateConnectionsNum(int);
 
-
-
-private:
     unsigned long messageSent;
-    uint8_t status;
+
 };
 
 

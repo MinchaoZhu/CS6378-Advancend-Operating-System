@@ -11,14 +11,10 @@ public:
     ClientManager();
     ClientManager(int);
 
-    void newActiveInterval();
-
 private:
     int* counters;
     int sum;
     std::vector<Client> clients;
-    
-    void decreaseCounter(int); // client index
 
 };
 
