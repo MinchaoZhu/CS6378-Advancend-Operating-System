@@ -14,7 +14,7 @@ vector<HostConfig> hostsConfig;
 void readConfig() {
     string line;
     
-    string conf_path = "./config/main.conf";
+    string conf_path = "./config/main.txt";
     ifstream ifs(conf_path);
 
     std::getline(ifs, line);
@@ -35,6 +35,10 @@ void readConfig() {
             HostConfig newHostConfig = {
                 stoul(tmp[0]), tmp[1], stoi(tmp[2])
             };
+            if(newHostConfig.hostName != "localhost") {
+                newHostConfig.hostName += ".utdallas.edu";
+            }
+
             hostsConfig.push_back(newHostConfig);
         }
         else {

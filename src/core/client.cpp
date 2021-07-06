@@ -9,6 +9,7 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <iostream>
+#include <netdb.h>
 
 extern Server *server;
 
@@ -31,18 +32,18 @@ void Client::execute(Client* object, int* counter) {
     assert(sock > -1);
 
     struct sockaddr_in address;
-    struct hostent * host;
     address.sin_family = AF_INET;
     address.sin_port = htons(cfg.port);
-    // TODO  
-    // host = gethostbyname(nodes[neighbor].hostName.c_str());
-    // if (!host)
-    // {
-    //     std::cout << "error: unknown host\n";
-    //     exit(1);
-    // }
-    // memcpy(&address.sin_addr, host->h_addr_list[0], host->h_length);
-    inet_pton(AF_INET, cfg.hostName.c_str(), &address.sin_addr);
+
+    struct hostent * host;
+    host = gethostbyname(cfg.hostName.c_str());
+    if (!host)
+    {
+        std::cout << "error: unknown host\n";
+        exit(1);
+    }
+
+    inet_pton(AF_INET, host->h_addr_list[0], &address.sin_addr);
 
     for(int i =0; i <10; i++) {
         if (connect(sock, (struct sockaddr *)&address, sizeof(address))) {
