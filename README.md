@@ -44,7 +44,11 @@ For initially active node and snapshot from this node for 6 times:
 
 For inactive node:
 ```bash
+./launcher.sh 1 1 main.txt 0
 ./launcher.sh 2 1 main.txt 0
+./launcher.sh 3 1 main.txt 0
+./launcher.sh 4 1 main.txt 0
+./launcher.sh 5 1 main.txt 0
 ```
 
 

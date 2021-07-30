@@ -43,12 +43,15 @@ void Client::execute(Client* object, int* counter) {
         exit(1);
     }
 
-    inet_pton(AF_INET, host->h_addr_list[0], &address.sin_addr);
+    address.sin_addr = *(struct in_addr *)host->h_addr_list[0];
+
+    // inet_pton(AF_INET, host->h_addr_list[0], &address.sin_addr);
+    //memcpy((char*)(&address),host->h_addr_list[0],host->h_length);
 
     for(int i =0; i <10; i++) {
         if (connect(sock, (struct sockaddr *)&address, sizeof(address))) {
             sleep(3);
-            if(i = 9) {
+            if(i == 9) {
                 close(sock);
                 sock = -1;
             }
