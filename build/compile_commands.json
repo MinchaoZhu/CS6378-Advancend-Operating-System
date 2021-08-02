@@ -1,0 +1,47 @@
+[
+{
+  "directory": "/home/edward/dev/CS6378-Advancend-Operating-System/build",
+  "command": "/usr/bin/x86_64-linux-gnu-g++-7   -I/home/edward/dev/CS6378-Advancend-Operating-System/include  -std=c++11 -pthread -O3 -DNDEBUG   -o CMakeFiles/Main.dir/src/main.cpp.o -c /home/edward/dev/CS6378-Advancend-Operating-System/src/main.cpp",
+  "file": "/home/edward/dev/CS6378-Advancend-Operating-System/src/main.cpp"
+},
+{
+  "directory": "/home/edward/dev/CS6378-Advancend-Operating-System/build",
+  "command": "/usr/bin/x86_64-linux-gnu-g++-7   -I/home/edward/dev/CS6378-Advancend-Operating-System/include  -std=c++11 -pthread -O3 -DNDEBUG   -o CMakeFiles/Main.dir/src/util/config_parser.cpp.o -c /home/edward/dev/CS6378-Advancend-Operating-System/src/util/config_parser.cpp",
+  "file": "/home/edward/dev/CS6378-Advancend-Operating-System/src/util/config_parser.cpp"
+},
+{
+  "directory": "/home/edward/dev/CS6378-Advancend-Operating-System/build",
+  "command": "/usr/bin/x86_64-linux-gnu-g++-7   -I/home/edward/dev/CS6378-Advancend-Operating-System/include  -std=c++11 -pthread -O3 -DNDEBUG   -o CMakeFiles/Main.dir/src/util/string_helper.cpp.o -c /home/edward/dev/CS6378-Advancend-Operating-System/src/util/string_helper.cpp",
+  "file": "/home/edward/dev/CS6378-Advancend-Operating-System/src/util/string_helper.cpp"
+},
+{
+  "directory": "/home/edward/dev/CS6378-Advancend-Operating-System/build",
+  "command": "/usr/bin/x86_64-linux-gnu-g++-7   -I/home/edward/dev/CS6378-Advancend-Operating-System/include  -std=c++11 -pthread -O3 -DNDEBUG   -o CMakeFiles/Main.dir/src/core/server.cpp.o -c /home/edward/dev/CS6378-Advancend-Operating-System/src/core/server.cpp",
+  "file": "/home/edward/dev/CS6378-Advancend-Operating-System/src/core/server.cpp"
+},
+{
+  "directory": "/home/edward/dev/CS6378-Advancend-Operating-System/build",
+  "command": "/usr/bin/x86_64-linux-gnu-g++-7   -I/home/edward/dev/CS6378-Advancend-Operating-System/include  -std=c++11 -pthread -O3 -DNDEBUG   -o CMakeFiles/Main.dir/src/core/client.cpp.o -c /home/edward/dev/CS6378-Advancend-Operating-System/src/core/client.cpp",
+  "file": "/home/edward/dev/CS6378-Advancend-Operating-System/src/core/client.cpp"
+},
+{
+  "directory": "/home/edward/dev/CS6378-Advancend-Operating-System/build",
+  "command": "/usr/bin/x86_64-linux-gnu-g++-7   -I/home/edward/dev/CS6378-Advancend-Operating-System/include  -std=c++11 -pthread -O3 -DNDEBUG   -o CMakeFiles/Main.dir/src/core/client_manager.cpp.o -c /home/edward/dev/CS6378-Advancend-Operating-System/src/core/client_manager.cpp",
+  "file": "/home/edward/dev/CS6378-Advancend-Operating-System/src/core/client_manager.cpp"
+},
+{
+  "directory": "/home/edward/dev/CS6378-Advancend-Operating-System/build",
+  "command": "/usr/bin/x86_64-linux-gnu-g++-7   -I/home/edward/dev/CS6378-Advancend-Operating-System/include  -std=c++11 -pthread -O3 -DNDEBUG   -o CMakeFiles/Main.dir/src/core/map.cpp.o -c /home/edward/dev/CS6378-Advancend-Operating-System/src/core/map.cpp",
+  "file": "/home/edward/dev/CS6378-Advancend-Operating-System/src/core/map.cpp"
+},
+{
+  "directory": "/home/edward/dev/CS6378-Advancend-Operating-System/build",
+  "command": "/usr/bin/x86_64-linux-gnu-g++-7   -I/home/edward/dev/CS6378-Advancend-Operating-System/include  -std=c++11 -pthread -O3 -DNDEBUG   -o CMakeFiles/Main.dir/src/core/vector_clock.cpp.o -c /home/edward/dev/CS6378-Advancend-Operating-System/src/core/vector_clock.cpp",
+  "file": "/home/edward/dev/CS6378-Advancend-Operating-System/src/core/vector_clock.cpp"
+},
+{
+  "directory": "/home/edward/dev/CS6378-Advancend-Operating-System/build",
+  "command": "/usr/bin/x86_64-linux-gnu-g++-7   -I/home/edward/dev/CS6378-Advancend-Operating-System/include  -std=c++11 -pthread -O3 -DNDEBUG   -o CMakeFiles/Main.dir/src/core/cl_snapshot.cpp.o -c /home/edward/dev/CS6378-Advancend-Operating-System/src/core/cl_snapshot.cpp",
+  "file": "/home/edward/dev/CS6378-Advancend-Operating-System/src/core/cl_snapshot.cpp"
+}
+]
