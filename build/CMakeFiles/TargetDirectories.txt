@@ -1,3 +1,0 @@
-/home/edward/dev/CS6378-Advancend-Operating-System/build/CMakeFiles/rebuild_cache.dir
-/home/edward/dev/CS6378-Advancend-Operating-System/build/CMakeFiles/Main.dir
-/home/edward/dev/CS6378-Advancend-Operating-System/build/CMakeFiles/edit_cache.dir
